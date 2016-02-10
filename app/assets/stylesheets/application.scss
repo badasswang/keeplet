@@ -1,2 +1,19 @@
-@import "boostrap-sprockets";
+@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "toastr";
+
+.gravatar-small {
+	width: 28px;
+}
+
+.gravatar-medium {
+	width: 48px;
+}
+
+.gravatar-large {
+	width: 68px;
+}
+
+.gravatar-full {
+	width: 100%;
+}
