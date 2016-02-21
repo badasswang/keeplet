@@ -245,8 +245,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, '13700689317-rk4veibac2psli7fs0e8fefsn2vji48f.apps.googleusercontent.com', 
                            'C0gfATEryVJdSCl2E10Th5gV'
   config.omniauth :facebook, '459544710905925', '41585590cd9c4ae469650b5dbd73673a',
-  :scope => 'email', :info_fields => 'email,first_name,last_name',
-  :display => 'popup'
+  scope: 'public_profile', info_fields: 'email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

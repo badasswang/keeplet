@@ -1,0 +1,130 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Create a new space
+	</div>
+	<div class="panel-body">
+		<div class="container">
+
+			<%= form_for @space, html: {multipart: true} do |f| %>
+
+			<div class="row">
+
+				<div class="col-md-4 select">
+					<div class="form-group">
+						<label>Space type</label>
+						<%= f.select :space_type, [["Indoor","Indoor"],["Outdoor","Outdoor"]], :id => "space_type", :prompt => "Select one", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="col-md-4 select">
+					<div class="form-group">
+						<label>Space size</label>
+						<%= f.select :space_size, [["Extra big","Extra big"],["Big","Big"],["Medium","Medium"],["Small","Small"],["Extra small","Extra small"]], :id => "space_size", :prompt => "Select one", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="col-md-4 select">
+					<div class="form-group">
+						<label>Moving</label>
+						<%= f.select :has_moving, [["Yes",true],["No",false]], :id => "has_moving", :prompt => "Select one", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="col-md-4 select">
+					<div class="form-group">
+						<label>Parking</label>
+						<%= f.select :for_car, [["Yes",true],["No",false]], :id => "for_car", :prompt => "Select one", class: "form-control" %>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="row">
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<label>Listing Name</label>
+						<%= f.text_field :list_name, class: "form-control", place_holder: "Listing Name" %>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<label>Description</label>
+						<%= f.text_area :desc, rows: 5, class: "form-control", place_holder: "About Your space...?" %>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<label>Address</label>
+						<%= f.text_field :address, class: "form-control", place_holder: "Street Address" %>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<label>City</label>
+						<%= f.text_field :city, class: "form-control", place_holder: "City" %>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<label>State</label>
+						<%= f.text_field :state, class: "form-control", place_holder: "State" %>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label>Weekly Price</label>
+						<div class="input-group">
+							<div class="input-group-addon">$</div>
+								<%= f.text_field :price, class: "form-control", place_holder: "(eg. $20)" %>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<span class="btn btn-default btn-file">
+							<i class="fa fa-cloud-upload fa-lg"></i> Upload photos
+							<%= file_field_tag "images[]", type: :file, multiple: true %>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div id="photos"><%= render 'photos/list' %></div>
+
+			<div class="row">
+				<div class="form-group">
+					<%= f.check_box :active %> Active
+				</div>
+			</div>
+
+			<div class="actions">
+				<%= f.submit "Save", class: "btn btn-primary" %>
+			</div>
+
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+

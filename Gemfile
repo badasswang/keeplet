@@ -18,6 +18,8 @@ gem 'toastr-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'paperclip'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug'

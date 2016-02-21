@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  space_type: MyString
+  space_size: MyString
+  has_moving: false
+  list_name: MyString
+  desc: MyText
+  address: MyString
+  city: MyString
+  state: MyString
+  for_car: false
+  price: 1
+  active: false
+  user_id: 
+
+two:
+  space_type: MyString
+  space_size: MyString
+  has_moving: false
+  list_name: MyString
+  desc: MyText
+  address: MyString
+  city: MyString
+  state: MyString
+  for_car: false
+  price: 1
+  active: false
+  user_id: 

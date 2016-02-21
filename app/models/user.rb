@@ -3,10 +3,12 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :omniauthable
+         :confirmable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   validates :firstname, presence: true, length: {maximum: 50}
   validates :lastname, presence: true, length: {maximum: 50}
+
+  has_many :spaces
 
   def self.from_omniauth(auth)
   	user = User.where(email: auth.info.email).first
