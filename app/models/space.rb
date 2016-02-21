@@ -2,6 +2,9 @@ class Space < ActiveRecord::Base
   belongs_to :user
   has_many :photos
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   validates :space_type, presence: true
   validates :space_size, presence: true
   validates :has_moving, presence: true

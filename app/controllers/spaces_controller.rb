@@ -28,6 +28,7 @@ class SpacesController < ApplicationController
       @photos = @space.photos
       redirect_to edit_space_path(@space), notice: "Saved."
     else
+      flash[:alert] = "Please provide all information for this room."
       render :new
     end
   end

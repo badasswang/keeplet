@@ -33,5 +33,64 @@
       </a>
     </div>
 
+    <br>
+    <hr>
+
+
+    <!-- Google Map -->
+    <div class="row">
+      <div class="col-md-12">
+        <div id="map"></div>
+
+        <style>
+          #map {
+            width: 100%;
+            height: 550px;
+          }
+        </style>
+
+        <script>
+          function initMap() {
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+              center: {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
+              zoom: 14
+            });
+            var marker = new google.maps.Marker({
+              position: {lat: <%= @space.latitude %>, lng: <%= @space.longitude %>},
+              title: "Here"
+            });
+
+            marker.setMap(map);
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" 
+          async defer>
+        </script>
+      </div>
+    </div>
+
+    <!-- Nearby spaces -->
+    <h3>Near by</h3>
+    <div class="row">
+      <% for space in @space.nearbys(10) %>
+        <div class="col-md-4">
+          <div class ="panel panel-default">
+            <div class="panel-heading preview">
+              <%= image_tag space.photos[0].image.url(:medium) %>
+            </div>
+            <div class="panel-body">
+              <%= link_to space.list_name, space %><br>
+              (<%= space.distance.round(2) %> miles away)
+            </div>
+          </div>
+        </div>
+      
+      <% end %>
+    </div>
+
+
+
+
   </div>
 </div>
