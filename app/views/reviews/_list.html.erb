@@ -1,0 +1,39 @@
+<% if @reviews.blank? %>
+	<div class="text-center">
+		<h4>There are no reviews for this space yet.</h4>
+	</div>
+
+<% else %>
+
+	<% @reviews.order("id desc").each do |r| %>
+	<hr>
+
+	<div class="row">
+		<div class="col-md-1">
+			<%= image_tag gravatar_url(r.user), class: "img-circle gravatar-medium" %>
+		</div>
+
+		<div class="col-md-11">
+			<div>
+				<strong><%= r.user.firstname %> <div id="stars_<%= r.id %>"></strong>
+				<span class="pull-right">
+					<%= link_to "Delete review", [@space, r], method: :delete, data: {confirm: "Are you sure?"} %>
+				</span>
+			</div>
+
+			<div><%= r.created_at.strftime("%v") %></div>
+			<div><%= r.comment %></div>
+		</div>
+	</div>
+
+	<script>
+	  $('#stars_<%= r.id %>').raty({
+	  	path: '/assets',
+	  	readOnly: true,
+	  	score: <%= r.star %>
+	  });
+    </script>
+
+	<% end %>
+<% end %>
+

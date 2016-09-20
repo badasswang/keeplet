@@ -8,22 +8,30 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">HAYSTASH</a>
+          <a class="navbar-brand" href="#">KEEPLET</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
 
+            <li>
+              <%= link_to new_space_path do %>
+              <i class="fa fa-home fa-lg"></i> List a space
+              <% end %>
+            </li>
+
             <% if(!user_signed_in?) %>
-              <li><%= link_to "Log in", new_user_session_path %></li>
               <li><%= link_to "Sign up", new_user_registration_path %></li>
+              <li><%= link_to "Log in", new_user_session_path %></li>
             <% else %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <%= image_tag gravatar(current_user), class: "img-circle gravatar-small" %>&nbsp;
+                  <%= image_tag gravatar_url(current_user), class: "img-circle gravatar-small" %>&nbsp;
                   <%= current_user.firstname %> <span class="caret"></span></a> 
   
                 <ul class="dropdown-menu">
-                  <li><a href="#">My space</a></li>
+                  <li><%= link_to "My Listings", spaces_path %></li>
+                  <li><%= link_to "My Bookings", your_bookings_path %></li>
+                  <li><%= link_to "My Storages", your_storages_path %></li>
                   <li><a href="#">Another action</a></li>
                   <li><%= link_to "Edit my profile", edit_user_registration_path %></li>
                   <li role="separator" class="divider"></li>
@@ -33,12 +41,14 @@
               </li>
             <% end %>  
 
-            <li>
-              <a href="#"><i class="fa fa-envelope-o"></i> Messages</a>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-home fa-lg"></i> List a Space</a>
-            </li>
+            <% if(user_signed_in?) %>
+              <li>
+                <%= link_to conversations_path do %>
+                <i class="fa fa-envelope-o"></i> Messages
+                <% end %>
+              </li>
+            <% end %>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>

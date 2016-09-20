@@ -11,7 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221110321) do
+ActiveRecord::Schema.define(version: 20160403050514) do
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "space_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "price"
+    t.integer  "tot_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bookings", ["space_id"], name: "index_bookings_on_space_id"
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "photos", force: :cascade do |t|
     t.integer  "space_id"
@@ -25,6 +57,18 @@ ActiveRecord::Schema.define(version: 20160221110321) do
 
   add_index "photos", ["space_id"], name: "index_photos_on_space_id"
 
+  create_table "reviews", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "star"
+    t.integer  "space_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["space_id"], name: "index_reviews_on_space_id"
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
+
   create_table "spaces", force: :cascade do |t|
     t.string   "space_type"
     t.string   "space_size"
@@ -36,7 +80,6 @@ ActiveRecord::Schema.define(version: 20160221110321) do
     t.string   "state"
     t.boolean  "for_car"
     t.integer  "price"
-    t.boolean  "active"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

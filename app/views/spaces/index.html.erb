@@ -2,7 +2,8 @@
 	<div class="col-md-3">
 		<ul class="sidebar-list">
 			<li class="sidebar-item"><%= link_to "Your Listing", spaces_path, class: "sidebar-link active" %></li>
-			<li class="sidebar-item"><%= link_to "Your Bookings", spaces_path, class: "sidebar-link" %></li>
+			<li class="sidebar-item"><%= link_to "Your Bookings", your_bookings_path, class: "sidebar-link" %></li>
+			<li class="sidebar-item"><%= link_to "Your Storages", your_storages_path, class: "sidebar-link" %></li>
 		</ul>
 	</div>
 	<div class="col-md-9">
@@ -15,7 +16,7 @@
 				<% @spaces.each do |space| %>
 					<div class = "row">
 						<div class="col-md-2">
-							<%= image_tag space.photos[0].image.url(:thumb) if space.photos.length > 0 %>
+							<%= image_tag space.show_first_photo(:thumb) %>
 						</div>
 						<div class="col-md-7">
 							<h4><%= space.list_name %></h4>

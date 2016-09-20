@@ -26,14 +26,14 @@
 				<div class="col-md-4 select">
 					<div class="form-group">
 						<label>Moving</label>
-						<%= f.select :has_moving, [["Yes",true],["No",false]], :id => "has_moving", :prompt => "Select one", class: "form-control" %>
+						<%= f.check_box :has_moving %>
 					</div>
 				</div>
 
 				<div class="col-md-4 select">
 					<div class="form-group">
 						<label>Parking</label>
-						<%= f.select :for_car, [["Yes",true],["No",false]], :id => "for_car", :prompt => "Select one", class: "form-control" %>
+						<%= f.check_box :for_car %>
 					</div>
 				</div>
 				
@@ -85,7 +85,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<label>Weekly Price</label>
+						<label>Monthly Price</label>
 						<div class="input-group">
 							<div class="input-group-addon">$</div>
 								<%= f.text_field :price, class: "form-control", place_holder: "(eg. $20)" %>
@@ -106,12 +106,6 @@
 			</div>
 
 			<div id="photos"><%= render 'photos/list' %></div>
-
-			<div class="row">
-				<div class="form-group">
-					<%= f.check_box :active %> Active
-				</div>
-			</div>
 
 			<div class="actions">
 				<%= f.submit "Save", class: "btn btn-primary" %>

@@ -36,6 +36,26 @@
     <br>
     <hr>
 
+    <div class="col-md-4">
+    <!-- Booking form -->
+      <%= render 'bookings/form' %>
+    </div>
+
+    <!-- Reviews -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Reviews <span id="average_rating"></span> (<%= @reviews.count %>)</h3>
+        <div class="container">
+          <div>
+            <%= render 'reviews/form' if @booked && !@reviewed %>
+          </div>
+          <div>
+            <%= render 'reviews/list' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Google Map -->
     <div class="row">
@@ -88,9 +108,13 @@
       
       <% end %>
     </div>
-
-
-
-
   </div>
 </div>
+
+<script>
+  $('#average_rating').raty({
+    path: '/assets',
+    readOnly: true,
+    score: <%= @space.average_rating %>
+  });
+</script>

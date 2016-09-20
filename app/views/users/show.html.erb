@@ -1,7 +1,12 @@
 <div class="row">
 	<div class="col-md-3">
 		<div class="center">
-			<%= image_tag gravatar(@user), class: "gravatar-full" %>
+			<%= image_tag gravatar_url(@user), class: "gravatar-full" %>
+			<% if current_user != @user %>
+				<div class="row-space-2">
+					<%= link_to "Send Message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary wide" %>
+				</div>
+			<% end %>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">Verification</div>
@@ -18,5 +23,23 @@
 		<div class="description row-space-3">
 			<%= @user.description %>
 		</div>
+
+		<h4>Listings (<%= @spaces.length %>)</h4><br>
+
+		<div class="row">
+			<% @spaces.each do|space| %>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel panel-heading preview">
+						<%= image_tag space.show_first_photo(:medium) %>
+					</div>
+					<div class="panel panel-body">
+						<%= link_to space.list_name, space %>
+					</div>
+				</div>
+			</div>
+			<% end %>
+		</div>
+
 	</div>
 </div>

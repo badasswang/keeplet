@@ -8,6 +8,12 @@ class SpacesController < ApplicationController
 
   def show
     @photos = @space.photos
+
+    @booked = Booking.where("space_id = ? AND user_id = ?", @space.id, current_user.id).present? if current_user
+
+    @reviews = @space.reviews
+    @reviewed = @reviews.find_by(user_id: current_user.id) if current_user
+
   end
 
   def new
@@ -62,7 +68,6 @@ class SpacesController < ApplicationController
     end
 
     def space_params
-      params.require(:space).permit(:space_type, :space_size, :has_moving, :list_name, :desc, 
-                                    :address, :city, :state, :for_car, :price, :active)
+      params.require(:space).permit(:space_type, :space_size, :has_moving, :list_name, :desc, :address, :city, :state, :for_car, :price)
     end
 end
